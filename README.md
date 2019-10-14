@@ -5,9 +5,9 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
 [![version][version-badge]][package]
 [![build][build]][circleci]
 [![coverage][coverage]][codecov]
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-numberinput&metric=alert_status)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-numberinput)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-numberinput&metric=bugs)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-numberinput)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-numberinput&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-numberinput)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-scrollbar&metric=alert_status)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-scrollbar)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-scrollbar&metric=bugs)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-scrollbar)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-scrollbar&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-scrollbar)
 [![MIT License][license-badge]][license]
 
 ## Prerequisites
@@ -40,12 +40,12 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
         )};
     }
 
-## Mandatory NumberInput properties      
+## Mandatory Scrollbar properties      
     changeScrollPosition: (newScrollPosition: number) => void,
     maxScrollPosition: number
 
          
-## Optional NumberInput properties
+## Optional Scrollbar properties
 | property             | description                                                                                                                    |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------|
 | className            | class name(s) for HTML outer div element                                                                                       |
@@ -53,7 +53,7 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
 
 
     
-## Optional NumberInput property types
+## Optional Scrollbar property types
     className: string,
     orientation: 'horizontal' | 'vertical'
         
@@ -99,5 +99,4 @@ MIT License
 [circleci]: https://circleci.com/gh/pksilen/semantic-ui-react-scrollbar/tree/master
 [coverage]: https://img.shields.io/codecov/c/github/pksilen/semantic-ui-react-scrollbar/master.svg?style=flat-square
 [codecov]: https://codecov.io/gh/pksilen/semantic-ui-react-scrollbar
-[demo]: https://pksilen.github.io/semantic-ui-react-scrollbar/
 [Semantic UI React]: https://react.semantic-ui.com/
