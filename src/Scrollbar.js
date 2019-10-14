@@ -9,9 +9,9 @@ import styles from './styles';
 
 type Props = {
   changeScrollPosition: (number) => void,
-  className: string,
+  className: ?string,
   maxScrollPosition: number,
-  orientation: 'horizontal'
+  orientation: 'horizontal' | 'vertical'
 };
 
 type State = {
@@ -23,7 +23,7 @@ export default class Scrollbar extends React.Component<Props, State> {
     changeScrollPosition: PropTypes.func.isRequired,
     className: PropTypes.string,
     maxScrollPosition: PropTypes.number.isRequired,
-    orientation: PropTypes.oneOf(['horizontal'])
+    orientation: PropTypes.oneOf(['horizontal', 'vertical'])
   };
 
   static defaultProps = {
@@ -47,20 +47,37 @@ export default class Scrollbar extends React.Component<Props, State> {
 
   thumbWidth: number;
 
+  trackHeight: number;
+
+  trackTop: number;
+
+  thumbHeight: number;
+
   constructor(props: Props) {
     super(props);
+
     this.scrollbarRef = React.createRef();
     this.trackRef = React.createRef();
     this.thumbRef = React.createRef();
+
     this.trackWidth = 0;
     this.trackLeft = 0;
     this.thumbWidth = 0;
+
+    this.trackHeight = 0;
+    this.trackTop = 0;
+    this.thumbHeight = 0;
   }
 
   componentDidMount() {
     this.trackWidth = this.trackRef.current.offsetWidth;
     this.trackLeft = this.trackRef.current.getBoundingClientRect().left;
     this.thumbWidth = this.thumbRef.current.offsetWidth;
+
+    this.trackHeight = this.trackRef.current.offsetHeight;
+    this.trackTop = this.trackRef.current.getBoundingClientRect().top;
+    this.thumbHeight = this.thumbRef.current.offsetHeight;
+
     document.addEventListener('keydown', this.onKeyDown);
   }
 
@@ -69,11 +86,19 @@ export default class Scrollbar extends React.Component<Props, State> {
   }
 
   onKeyDown = (keyboardEvent: KeyboardEvent) => {
-    if (window.getComputedStyle(this.scrollbarRef.current).visibility === 'visible') {
-      if (keyboardEvent.code === 'ArrowLeft') {
-        this.scrollLeft();
-      } else if (keyboardEvent.code === 'ArrowRight') {
-        this.scrollRight();
+    const { orientation } = this.props;
+
+    if (window.getComputedStyle(this.scrollbarRef.current).getPropertyValue('visibility') === 'visible') {
+      if (
+        (orientation === 'horizontal' && keyboardEvent.code === 'ArrowLeft') ||
+        (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp')
+      ) {
+        this.scrollLeftOrUp();
+      } else if (
+        (orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
+        (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown')
+      ) {
+        this.scrollRightOrDown();
       }
     }
   };
@@ -81,18 +106,26 @@ export default class Scrollbar extends React.Component<Props, State> {
   updateThumbPosition = (event: SyntheticMouseEvent<HTMLElement>) => {
     event.stopPropagation();
 
-    const { maxScrollPosition, changeScrollPosition } = this.props;
+    const { changeScrollPosition, maxScrollPosition, orientation } = this.props;
+    let currentScrollPosition;
 
-    let currentScrollPosition = Math.round(
-      ((event.pageX - this.trackLeft - this.thumbWidth / 2) / (this.trackWidth - this.thumbWidth)) *
-        maxScrollPosition
-    );
+    if (orientation === 'horizontal') {
+      currentScrollPosition = Math.round(
+        ((event.pageX - this.trackLeft - this.thumbWidth / 2) / (this.trackWidth - this.thumbWidth)) *
+          maxScrollPosition
+      );
+    } else {
+      currentScrollPosition = Math.round(
+        ((event.pageY - this.trackTop - this.thumbHeight / 2) / (this.trackHeight - this.thumbHeight)) *
+          maxScrollPosition
+      );
+    }
 
     currentScrollPosition = Math.min(maxScrollPosition, Math.max(0, currentScrollPosition));
 
-    this.setState(() => ({
+    this.setState({
       currentScrollPosition
-    }));
+    });
 
     changeScrollPosition(currentScrollPosition);
   };
@@ -109,7 +142,7 @@ export default class Scrollbar extends React.Component<Props, State> {
     window.addEventListener('mouseup', this.endThumbDrag);
   };
 
-  scrollLeft = () => {
+  scrollLeftOrUp = () => {
     const { changeScrollPosition } = this.props;
 
     this.setState(({ currentScrollPosition }: State): State => {
@@ -119,13 +152,14 @@ export default class Scrollbar extends React.Component<Props, State> {
           currentScrollPosition: currentScrollPosition - 1
         };
       }
+
       return {
         currentScrollPosition
       };
     });
   };
 
-  scrollRight = () => {
+  scrollRightOrDown = () => {
     const { maxScrollPosition, changeScrollPosition } = this.props;
 
     this.setState(({ currentScrollPosition }: State): State => {
@@ -135,6 +169,7 @@ export default class Scrollbar extends React.Component<Props, State> {
           currentScrollPosition: currentScrollPosition + 1
         };
       }
+
       return {
         currentScrollPosition
       };
@@ -146,29 +181,43 @@ export default class Scrollbar extends React.Component<Props, State> {
     const { currentScrollPosition } = this.state;
 
     let marginLeft = 0;
+    let marginTop = 0;
+
     if (orientation === 'horizontal') {
       marginLeft = `${
         this.trackWidth
           ? (currentScrollPosition * (this.trackWidth - this.thumbWidth)) / maxScrollPosition
           : 0
       }px`;
+    } else {
+      marginTop = `${
+        this.trackHeight
+          ? (currentScrollPosition * (this.trackHeight - this.thumbHeight)) / maxScrollPosition
+          : 0
+      }px`;
     }
 
     const thumbStyle = {
       ...styles.thumb,
-      marginLeft
+      marginLeft,
+      marginTop
     };
 
     return (
-      <div ref={this.scrollbarRef} className={className} style={styles.scrollbar}>
-        <div style={styles.button} onClick={this.scrollLeft}>
-          <Icon name="caret left" />
+      <div className={className} ref={this.scrollbarRef} style={styles.scrollbar[orientation]}>
+        <div className="button" style={styles.button} onClick={this.scrollLeftOrUp}>
+          <Icon name={orientation === 'horizontal' ? 'caret left' : 'caret up'} style={{ margin: 0 }} />
         </div>
-        <div style={styles.track} ref={this.trackRef} onClick={this.updateThumbPosition}>
-          <div style={thumbStyle} ref={this.thumbRef} onMouseDown={this.startThumbDrag} />
+        <div
+          className="track"
+          style={styles.track[orientation]}
+          ref={this.trackRef}
+          onClick={this.updateThumbPosition}
+        >
+          <div className="thumb" style={thumbStyle} ref={this.thumbRef} onMouseDown={this.startThumbDrag} />
         </div>
-        <div style={styles.button} onClick={this.scrollRight}>
-          <Icon name="caret right" />
+        <div className="button" style={styles.button} onClick={this.scrollRightOrDown}>
+          <Icon name={orientation === 'horizontal' ? 'caret right' : 'caret down'} style={{ margin: 0 }} />
         </div>
       </div>
     );

@@ -13,8 +13,13 @@ class DemoApp extends React.Component<{}, {}> {
 
   render(): Element<*> {
     return (
-      <div>
-        <Scrollbar maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
+      <div style={{ height: '300px', width: '500px' }}>
+        <Scrollbar className="horizontalScrollbar" maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
+        <Scrollbar
+          orientation="vertical"
+          maxScrollPosition={10}
+          changeScrollPosition={this.changeScrollPosition}
+        />
       </div>
     );
   }
