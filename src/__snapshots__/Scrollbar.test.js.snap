@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render should render horizontal scroll bar correctly 1`] = `
+<Scrollbar
+  changeScrollPosition={[MockFunction]}
+  maxScrollPosition={10}
+  orientation="horizontal"
+>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "bottom": 0,
+        "display": "flex",
+        "left": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="button"
+      onClick={[Function]}
+      style={
+        Object {
+          "flexShrink": 0,
+          "fontSize": "1.2rem",
+          "lineHeight": "1.2rem",
+        }
+      }
+    >
+      <Icon
+        as="i"
+        name="caret left"
+        style={
+          Object {
+            "margin": 0,
+          }
+        }
+      >
+        <i
+          aria-hidden="true"
+          className="caret left icon"
+          onClick={[Function]}
+          style={
+            Object {
+              "margin": 0,
+            }
+          }
+        />
+      </Icon>
+    </div>
+    <div
+      className="track"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "rgba(0, 0, 0, 0.1)",
+          "flexGrow": 1,
+          "height": "0.8rem",
+        }
+      }
+    >
+      <div
+        className="thumb"
+        onMouseDown={[Function]}
+        style={
+          Object {
+            "background": "rgb(0, 0, 0)",
+            "height": "0.8rem",
+            "marginLeft": "0px",
+            "marginTop": 0,
+            "width": "0.8rem",
+          }
+        }
+      />
+    </div>
+    <div
+      className="button"
+      onClick={[Function]}
+      style={
+        Object {
+          "flexShrink": 0,
+          "fontSize": "1.2rem",
+          "lineHeight": "1.2rem",
+        }
+      }
+    >
+      <Icon
+        as="i"
+        name="caret right"
+        style={
+          Object {
+            "margin": 0,
+          }
+        }
+      >
+        <i
+          aria-hidden="true"
+          className="caret right icon"
+          onClick={[Function]}
+          style={
+            Object {
+              "margin": 0,
+            }
+          }
+        />
+      </Icon>
+    </div>
+  </div>
+</Scrollbar>
+`;
+
+exports[`render should render vertical scroll bar correctly 1`] = `
+<Scrollbar
+  changeScrollPosition={[MockFunction]}
+  maxScrollPosition={10}
+  orientation="vertical"
+>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      className="button"
+      onClick={[Function]}
+      style={
+        Object {
+          "flexShrink": 0,
+          "fontSize": "1.2rem",
+          "lineHeight": "1.2rem",
+        }
+      }
+    >
+      <Icon
+        as="i"
+        name="caret up"
+        style={
+          Object {
+            "margin": 0,
+          }
+        }
+      >
+        <i
+          aria-hidden="true"
+          className="caret up icon"
+          onClick={[Function]}
+          style={
+            Object {
+              "margin": 0,
+            }
+          }
+        />
+      </Icon>
+    </div>
+    <div
+      className="track"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "rgba(0, 0, 0, 0.1)",
+          "flexGrow": 1,
+          "width": "0.8rem",
+        }
+      }
+    >
+      <div
+        className="thumb"
+        onMouseDown={[Function]}
+        style={
+          Object {
+            "background": "rgb(0, 0, 0)",
+            "height": "0.8rem",
+            "marginLeft": 0,
+            "marginTop": "0px",
+            "width": "0.8rem",
+          }
+        }
+      />
+    </div>
+    <div
+      className="button"
+      onClick={[Function]}
+      style={
+        Object {
+          "flexShrink": 0,
+          "fontSize": "1.2rem",
+          "lineHeight": "1.2rem",
+        }
+      }
+    >
+      <Icon
+        as="i"
+        name="caret down"
+        style={
+          Object {
+            "margin": 0,
+          }
+        }
+      >
+        <i
+          aria-hidden="true"
+          className="caret down icon"
+          onClick={[Function]}
+          style={
+            Object {
+              "margin": 0,
+            }
+          }
+        />
+      </Icon>
+    </div>
+  </div>
+</Scrollbar>
+`;
