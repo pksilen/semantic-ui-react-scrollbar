@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "babel ./src --out-dir ./lib --source-maps --ignore \"src/**/*.test.js\",\"src/setupTests.js\"",
-    "flow": "flow src",
+    "flow": "flow ./src",
     "stop-flow": "flow stop",
     "install-flow-types": "flow-typed install",
     "lint": "eslint ./src",
