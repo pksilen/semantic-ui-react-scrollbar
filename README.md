@@ -39,6 +39,8 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
             <Scrollbar maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
         )};
     }
+    
+See full example in demo directory
 
 ## Mandatory Scrollbar properties      
     changeScrollPosition: (newScrollPosition: number) => void,
