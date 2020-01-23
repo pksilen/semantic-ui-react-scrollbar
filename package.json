@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "babel ./src --out-dir ./lib --source-maps --ignore \"src/**/*.test.js\",\"src/setupTests.js\"",
+    "build-demo": "prettier --check demo/demo.js && eslint demo/demo.js && webpack",
     "flow": "flow ./src",
     "stop-flow": "flow stop",
     "install-flow-types": "flow-typed install",

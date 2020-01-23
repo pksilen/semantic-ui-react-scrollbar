@@ -32,9 +32,19 @@ class DemoApp extends React.Component<{}, State> {
 
     return (
       <div style={{ position: 'relative', height: '300px', width: '500px' }}>
-        <div>x position: { xPosition }</div>
-        <div>y position: { yPosition }</div>
-        <Scrollbar className="horizontalScrollbar" maxScrollPosition={10} changeScrollPosition={this.changeXScrollPosition} />
+        <div>
+          x position: &nbsp;
+          {xPosition}
+        </div>
+        <div>
+          y position: &nbsp;
+          {yPosition}
+        </div>
+        <Scrollbar
+          className="horizontalScrollbar"
+          maxScrollPosition={10}
+          changeScrollPosition={this.changeXScrollPosition}
+        />
         <Scrollbar
           orientation="vertical"
           maxScrollPosition={10}
