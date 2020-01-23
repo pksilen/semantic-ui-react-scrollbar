@@ -5,20 +5,40 @@ import type { Element } from 'react';
 import { render } from 'react-dom';
 import Scrollbar from '../src/Scrollbar';
 
-class DemoApp extends React.Component<{}, {}> {
-  changeScrollPosition = (scrollPosition: number) => {
-    // eslint-disable-next-line no-console
-    console.log(scrollPosition);
+type State = {
+  xPosition: number,
+  yPosition: number
+};
+
+class DemoApp extends React.Component<{}, State> {
+  state: State = { xPosition: 0, yPosition: 0 };
+
+  changeXScrollPosition = (scrollPosition: number) => {
+    this.setState((prevState: State) => ({
+      ...prevState,
+      xPosition: scrollPosition
+    }));
   };
 
-  render(): Element<*> {
+  changeYScrollPosition = (scrollPosition: number) => {
+    this.setState((prevState: State) => ({
+      ...prevState,
+      yPosition: scrollPosition
+    }));
+  };
+
+  render(): Element<any> {
+    const { xPosition, yPosition } = this.state;
+
     return (
-      <div style={{ height: '300px', width: '500px' }}>
-        <Scrollbar className="horizontalScrollbar" maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
+      <div style={{ position: 'relative', height: '300px', width: '500px' }}>
+        <div>x position: { xPosition }</div>
+        <div>y position: { yPosition }</div>
+        <Scrollbar className="horizontalScrollbar" maxScrollPosition={10} changeScrollPosition={this.changeXScrollPosition} />
         <Scrollbar
           orientation="vertical"
           maxScrollPosition={10}
-          changeScrollPosition={this.changeScrollPosition}
+          changeScrollPosition={this.changeYScrollPosition}
         />
       </div>
     );

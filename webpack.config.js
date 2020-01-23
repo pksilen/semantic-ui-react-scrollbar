@@ -25,7 +25,7 @@ const config = {
   },
   mode: 'production',
   devServer: {
-    contentBase: path.resolve(__dirname, 'demo'),
+    contentBase: __dirname,
     compress: false,
     port: 3000
   }

@@ -18,6 +18,10 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
 ## Installation
     npm install --save semantic-ui-react-scrollbar
     
+## Demo
+
+    Scrollbar [demo]
+    
 ## Example usage
     import React from 'react';
     import Scrollbar from 'semantic-ui-react-scrollbar';
@@ -102,3 +106,4 @@ MIT License
 [coverage]: https://img.shields.io/codecov/c/github/pksilen/semantic-ui-react-scrollbar/master.svg?style=flat-square
 [codecov]: https://codecov.io/gh/pksilen/semantic-ui-react-scrollbar
 [Semantic UI React]: https://react.semantic-ui.com/
+[demo]: https://pksilen.github.io/semantic-ui-react-scrollbar
