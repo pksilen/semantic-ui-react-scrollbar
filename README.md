@@ -19,8 +19,7 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
     npm install --save semantic-ui-react-scrollbar
     
 ## Demo
-
-    Scrollbar [demo]
+Scrollbar [demo]
     
 ## Example usage
     import React from 'react';
