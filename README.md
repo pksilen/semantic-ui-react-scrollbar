@@ -23,7 +23,7 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
 Scrollbar [demo]
     
 ## Example usage
-```js
+```jsx
 import React from 'react';
 import Scrollbar from 'semantic-ui-react-scrollbar';
 
@@ -88,15 +88,15 @@ Style scroll bar in CSS:
 
 ```css
 .myScrollbar .button {
-    // style buttons here
+    /* style buttons here */
 }
 
 .myScrollbar .track {
-   // style scroll bar track here
+   /* style scroll bar track here */
 }
 
 .myScrollbar .thumb {
-    // style scroll bar thumb here
+    /* style scroll bar thumb here */
 }
 ```
     
