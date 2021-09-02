@@ -4,6 +4,7 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
 
 [![version][version-badge]][package]
 [![build][build]][circleci]
+[![Downloads][downloads]][package]
 [![coverage][coverage]][codecov]
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-scrollbar&metric=alert_status)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-scrollbar)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=pksilen_semantic-ui-react-scrollbar&metric=bugs)](https://sonarcloud.io/dashboard?id=pksilen_semantic-ui-react-scrollbar)
@@ -22,26 +23,28 @@ Horizontal and vertical scroll bar for  [Semantic UI React]
 Scrollbar [demo]
     
 ## Example usage
-    import React from 'react';
-    import Scrollbar from 'semantic-ui-react-scrollbar';
-    
-    class ScrollbarExample extends React.Component {
+```js
+import React from 'react';
+import Scrollbar from 'semantic-ui-react-scrollbar';
 
-        constructor(props) {
-            super(props);
-            this.state = {
-                scrollPosition: '0'
-            };
-        }
-        
-        changeScrollPosition = (newScrollPosition) => {
-            this.setState({ scrollPosition: newScrollPosition });
-        }
-       
-        render() => {(
-            <Scrollbar maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
-        )};
-    }
+class ScrollbarExample extends React.Component {
+
+constructor(props) {
+    super(props);
+    this.state = {
+        scrollPosition: '0'
+    };
+}
+
+changeScrollPosition = (newScrollPosition) => {
+    this.setState({ scrollPosition: newScrollPosition });
+}
+
+render() => {(
+    <Scrollbar maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
+)};
+}
+```
     
 See full example in demo directory
 
@@ -100,6 +103,7 @@ MIT License
 [license]: https://github.com/pksilen/semantic-ui-react-scrollbar/blob/master/LICENSE
 [version-badge]: https://img.shields.io/npm/v/semantic-ui-react-scrollbar.svg?style=flat-square
 [package]: https://www.npmjs.com/package/semantic-ui-react-scrollbar
+[downloads]: https://img.shields.io/npm/dm/semantic-ui-react-scrollbar
 [build]: https://img.shields.io/circleci/project/github/pksilen/semantic-ui-react-scrollbar/master.svg?style=flat-square
 [circleci]: https://circleci.com/gh/pksilen/semantic-ui-react-scrollbar/tree/master
 [coverage]: https://img.shields.io/codecov/c/github/pksilen/semantic-ui-react-scrollbar/master.svg?style=flat-square
