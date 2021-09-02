@@ -46,7 +46,7 @@ class ScrollbarExample extends React.Component {
 }
 ```
     
-See full example in demo directory
+See full example in `demo` directory
 
 ## Mandatory Scrollbar properties      
     changeScrollPosition: (newScrollPosition: number) => void,
@@ -80,21 +80,25 @@ See full example in demo directory
         
 ## Styling example
 
-    <Scrollbar className="myScrollbar" .... />
+```jsx
+<Scrollbar className="myScrollbar" .... />
+```
     
-   Style scroll bar in CSS:
-   
-       .myScrollbar .button {
-            // style buttons here
-        }
-        
-       .myScrollbar .track {
-           // style scroll bar track here
-       }
-       
-       .myScrollbar .thumb {
-            // style scroll bar thumb here
-       }
+Style scroll bar in CSS:
+
+```css
+.myScrollbar .button {
+    // style buttons here
+}
+
+.myScrollbar .track {
+   // style scroll bar track here
+}
+
+.myScrollbar .thumb {
+    // style scroll bar thumb here
+}
+```
     
 ## License
 MIT License
