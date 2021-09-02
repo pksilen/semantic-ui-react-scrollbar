@@ -29,20 +29,20 @@ import Scrollbar from 'semantic-ui-react-scrollbar';
 
 class ScrollbarExample extends React.Component {
 
-constructor(props) {
-    super(props);
-    this.state = {
-        scrollPosition: '0'
-    };
-}
+    constructor(props) {
+        super(props);
+        this.state = {
+            scrollPosition: '0'
+        };
+    }
 
-changeScrollPosition = (newScrollPosition) => {
-    this.setState({ scrollPosition: newScrollPosition });
-}
+    changeScrollPosition = (newScrollPosition) => {
+        this.setState({ scrollPosition: newScrollPosition });
+    }
 
-render() => {(
-    <Scrollbar maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
-)};
+    render() => {(
+        <Scrollbar maxScrollPosition={10} changeScrollPosition={this.changeScrollPosition} />
+    )};
 }
 ```
     
