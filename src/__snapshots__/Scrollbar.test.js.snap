@@ -8,7 +8,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
 >
   <div
     style={
-      Object {
+      {
         "alignItems": "center",
         "bottom": 0,
         "display": "flex",
@@ -22,7 +22,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
       className="button"
       onClick={[Function]}
       style={
-        Object {
+        {
           "flexShrink": 0,
           "fontSize": "1.2rem",
           "lineHeight": "1.2rem",
@@ -33,7 +33,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
         as="i"
         name="caret left"
         style={
-          Object {
+          {
             "margin": 0,
           }
         }
@@ -43,7 +43,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
           className="caret left icon"
           onClick={[Function]}
           style={
-            Object {
+            {
               "margin": 0,
             }
           }
@@ -54,7 +54,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
       className="track"
       onClick={[Function]}
       style={
-        Object {
+        {
           "background": "rgba(0, 0, 0, 0.1)",
           "flexGrow": 1,
           "height": "0.8rem",
@@ -65,7 +65,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
         className="thumb"
         onMouseDown={[Function]}
         style={
-          Object {
+          {
             "background": "rgb(0, 0, 0)",
             "height": "0.8rem",
             "marginLeft": "0px",
@@ -79,7 +79,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
       className="button"
       onClick={[Function]}
       style={
-        Object {
+        {
           "flexShrink": 0,
           "fontSize": "1.2rem",
           "lineHeight": "1.2rem",
@@ -90,7 +90,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
         as="i"
         name="caret right"
         style={
-          Object {
+          {
             "margin": 0,
           }
         }
@@ -100,7 +100,7 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
           className="caret right icon"
           onClick={[Function]}
           style={
-            Object {
+            {
               "margin": 0,
             }
           }
@@ -119,7 +119,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
 >
   <div
     style={
-      Object {
+      {
         "alignItems": "center",
         "display": "flex",
         "flexDirection": "column",
@@ -134,7 +134,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
       className="button"
       onClick={[Function]}
       style={
-        Object {
+        {
           "flexShrink": 0,
           "fontSize": "1.2rem",
           "lineHeight": "1.2rem",
@@ -145,7 +145,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
         as="i"
         name="caret up"
         style={
-          Object {
+          {
             "margin": 0,
           }
         }
@@ -155,7 +155,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
           className="caret up icon"
           onClick={[Function]}
           style={
-            Object {
+            {
               "margin": 0,
             }
           }
@@ -166,7 +166,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
       className="track"
       onClick={[Function]}
       style={
-        Object {
+        {
           "background": "rgba(0, 0, 0, 0.1)",
           "flexGrow": 1,
           "width": "0.8rem",
@@ -177,7 +177,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
         className="thumb"
         onMouseDown={[Function]}
         style={
-          Object {
+          {
             "background": "rgb(0, 0, 0)",
             "height": "0.8rem",
             "marginLeft": 0,
@@ -191,7 +191,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
       className="button"
       onClick={[Function]}
       style={
-        Object {
+        {
           "flexShrink": 0,
           "fontSize": "1.2rem",
           "lineHeight": "1.2rem",
@@ -202,7 +202,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
         as="i"
         name="caret down"
         style={
-          Object {
+          {
             "margin": 0,
           }
         }
@@ -212,7 +212,7 @@ exports[`render should render vertical scroll bar correctly 1`] = `
           className="caret down icon"
           onClick={[Function]}
           style={
-            Object {
+            {
               "margin": 0,
             }
           }
