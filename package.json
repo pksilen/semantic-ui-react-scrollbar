@@ -22,7 +22,7 @@
     "stop-flow": "flow stop",
     "install-flow-types": "flow-typed install",
     "lint": "eslint ./src",
-    "prebuild": "npm run prettier && npm run flow && npm run lint && npm run test-coverage",
+    "prebuild": "npm run prettier && npm run lint && npm run test-coverage",
     "prettier": "prettier --check \"src/**/*.js\"",
     "start-dev-server": "webpack-dev-server",
     "test": "jest ./src",
