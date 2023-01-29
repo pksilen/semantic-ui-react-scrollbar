@@ -74,6 +74,7 @@
     "prop-types": "^15.7.2"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
     ],
