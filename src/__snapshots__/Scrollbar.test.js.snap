@@ -2,9 +2,12 @@
 
 exports[`render should render horizontal scroll bar correctly 1`] = `
 <Scrollbar
+  allowHomeAndEndKeys={false}
+  allowShiftArrowKeys={false}
   changeScrollPosition={[MockFunction]}
   maxScrollPosition={10}
   orientation="horizontal"
+  pageSize={1}
 >
   <div
     style={
@@ -113,9 +116,12 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
 
 exports[`render should render vertical scroll bar correctly 1`] = `
 <Scrollbar
+  allowHomeAndEndKeys={false}
+  allowShiftArrowKeys={false}
   changeScrollPosition={[MockFunction]}
   maxScrollPosition={10}
   orientation="vertical"
+  pageSize={1}
 >
   <div
     style={

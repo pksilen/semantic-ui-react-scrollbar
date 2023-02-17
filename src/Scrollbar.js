@@ -8,10 +8,13 @@ import { Icon } from 'semantic-ui-react';
 import styles from './styles';
 
 type Props = {
+  allowHomeAndEndKeys: ?boolean,
+  allowShiftArrowKeys: ?boolean,
   changeScrollPosition: (number) => void,
   className: ?string,
   maxScrollPosition: number,
-  orientation: 'horizontal' | 'vertical'
+  orientation: 'horizontal' | 'vertical',
+  pageSize: ?number
 };
 
 type State = {
@@ -20,15 +23,21 @@ type State = {
 
 export default class Scrollbar extends React.Component<Props, State> {
   static propTypes: { [key: $Keys<Props>]: any } = {
+    allowHomeAndEndKeys: PropTypes.bool,
+    allowShiftArrowKeys: PropTypes.bool,
     changeScrollPosition: PropTypes.func.isRequired,
     className: PropTypes.string,
     maxScrollPosition: PropTypes.number.isRequired,
-    orientation: PropTypes.oneOf(['horizontal', 'vertical'])
+    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+    pageSize: PropTypes.number
   };
 
   static defaultProps = {
+    allowHomeAndEndKeys: false,
+    allowShiftArrowKeys: false,
     className: undefined,
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    pageSize: 1
   };
 
   state = {
@@ -86,7 +95,15 @@ export default class Scrollbar extends React.Component<Props, State> {
   }
 
   onKeyDown = (keyboardEvent: KeyboardEvent) => {
-    const { orientation } = this.props;
+    const {
+      allowHomeAndEndKeys,
+      allowShiftArrowKeys,
+      changeScrollPosition,
+      maxScrollPosition,
+      orientation,
+      pageSize
+    } = this.props;
+    let isKeyHandled = false;
 
     if (window.getComputedStyle(this.scrollbarRef.current).getPropertyValue('visibility') === 'visible') {
       if (
@@ -94,12 +111,79 @@ export default class Scrollbar extends React.Component<Props, State> {
         (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp')
       ) {
         this.scrollLeftOrUp();
+        isKeyHandled = true;
       } else if (
         (orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
         (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown')
       ) {
         this.scrollRightOrDown();
+        isKeyHandled = true;
+      } else if (allowHomeAndEndKeys && keyboardEvent.code === 'Home') {
+        this.setState({
+          currentScrollPosition: 0
+        });
+
+        changeScrollPosition(0);
+        isKeyHandled = true;
+      } else if (allowHomeAndEndKeys && keyboardEvent.code === 'End') {
+        this.setState({
+          currentScrollPosition: maxScrollPosition
+        });
+
+        changeScrollPosition(maxScrollPosition);
+        isKeyHandled = true;
+      } else if (
+        allowShiftArrowKeys &&
+        keyboardEvent.shiftKey &&
+        ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowLeft') ||
+          (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp'))
+      ) {
+        this.setState(({ currentScrollPosition }: State): State => {
+          if (currentScrollPosition - pageSize >= 0) {
+            changeScrollPosition(currentScrollPosition - pageSize);
+
+            return {
+              currentScrollPosition: currentScrollPosition - pageSize
+            };
+          }
+
+          changeScrollPosition(0);
+
+          return {
+            currentScrollPosition: 0
+          };
+        });
+
+        isKeyHandled = true;
+      } else if (
+        allowShiftArrowKeys &&
+        keyboardEvent.shiftKey &&
+        ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
+          (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown'))
+      ) {
+        this.setState(({ currentScrollPosition }: State): State => {
+          if (currentScrollPosition + pageSize <= maxScrollPosition) {
+            changeScrollPosition(currentScrollPosition + pageSize);
+
+            return {
+              currentScrollPosition: currentScrollPosition + pageSize
+            };
+          }
+
+          changeScrollPosition(maxScrollPosition);
+
+          return {
+            currentScrollPosition: maxScrollPosition
+          };
+        });
+
+        isKeyHandled = true;
       }
+    }
+
+    if (!isKeyHandled) {
+      keyboardEvent.preventDefault();
+      keyboardEvent.stopPropagation();
     }
   };
 
@@ -142,8 +226,12 @@ export default class Scrollbar extends React.Component<Props, State> {
     window.addEventListener('mouseup', this.endThumbDrag);
   };
 
-  scrollLeftOrUp = () => {
+  scrollLeftOrUp = (event?: SyntheticMouseEvent<HTMLElement>) => {
     const { changeScrollPosition } = this.props;
+
+    if (event) {
+      event.stopPropagation();
+    }
 
     this.setState(({ currentScrollPosition }: State): State => {
       if (currentScrollPosition > 0) {
@@ -159,8 +247,12 @@ export default class Scrollbar extends React.Component<Props, State> {
     });
   };
 
-  scrollRightOrDown = () => {
+  scrollRightOrDown = (event?: SyntheticMouseEvent<HTMLElement>) => {
     const { maxScrollPosition, changeScrollPosition } = this.props;
+
+    if (event) {
+      event.stopPropagation();
+    }
 
     this.setState(({ currentScrollPosition }: State): State => {
       if (currentScrollPosition < maxScrollPosition) {
