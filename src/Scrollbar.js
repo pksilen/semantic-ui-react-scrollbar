@@ -181,7 +181,7 @@ export default class Scrollbar extends React.Component<Props, State> {
       }
     }
 
-    if (!isKeyHandled) {
+    if (isKeyHandled) {
       keyboardEvent.preventDefault();
       keyboardEvent.stopPropagation();
     }
