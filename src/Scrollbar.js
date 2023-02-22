@@ -107,14 +107,16 @@ export default class Scrollbar extends React.Component<Props, State> {
 
     if (window.getComputedStyle(this.scrollbarRef.current).getPropertyValue('visibility') === 'visible') {
       if (
-        (orientation === 'horizontal' && keyboardEvent.code === 'ArrowLeft') ||
-        (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp')
+        !keyboardEvent.shiftKey &&
+        ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowLeft') ||
+          (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp'))
       ) {
         this.scrollLeftOrUp();
         isKeyHandled = true;
       } else if (
-        (orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
-        (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown')
+        !keyboardEvent.shiftKey &&
+        ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
+          (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown'))
       ) {
         this.scrollRightOrDown();
         isKeyHandled = true;
