@@ -9,7 +9,7 @@ import styles from './styles';
 
 type Props = {
   allowHomeAndEndKeys: ?boolean,
-  allowCtrlArrowKeys: ?boolean,
+  allowCtrlOrMetaArrowKeys: ?boolean,
   changeScrollPosition: (number) => void,
   className: ?string,
   maxScrollPosition: number,
@@ -24,7 +24,7 @@ type State = {
 export default class Scrollbar extends React.Component<Props, State> {
   static propTypes: { [key: $Keys<Props>]: any } = {
     allowHomeAndEndKeys: PropTypes.bool,
-    allowCtrlArrowKeys: PropTypes.bool,
+    allowCtrlOrMetaArrowKeys: PropTypes.bool,
     changeScrollPosition: PropTypes.func.isRequired,
     className: PropTypes.string,
     maxScrollPosition: PropTypes.number.isRequired,
@@ -97,7 +97,7 @@ export default class Scrollbar extends React.Component<Props, State> {
   onKeyDown = (keyboardEvent: KeyboardEvent) => {
     const {
       allowHomeAndEndKeys,
-      allowCtrlArrowKeys,
+      allowCtrlOrMetaArrowKeys,
       changeScrollPosition,
       maxScrollPosition,
       orientation,
@@ -108,6 +108,7 @@ export default class Scrollbar extends React.Component<Props, State> {
     if (window.getComputedStyle(this.scrollbarRef.current).getPropertyValue('visibility') === 'visible') {
       if (
         !keyboardEvent.ctrlKey &&
+        !keyboardEvent.metaKey &&
         ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowLeft') ||
           (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp'))
       ) {
@@ -115,6 +116,7 @@ export default class Scrollbar extends React.Component<Props, State> {
         isKeyHandled = true;
       } else if (
         !keyboardEvent.ctrlKey &&
+        !keyboardEvent.metaKey &&
         ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
           (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown'))
       ) {
@@ -135,8 +137,8 @@ export default class Scrollbar extends React.Component<Props, State> {
         changeScrollPosition(maxScrollPosition);
         isKeyHandled = true;
       } else if (
-        allowCtrlArrowKeys &&
-        keyboardEvent.ctrlKey &&
+        allowCtrlOrMetaArrowKeys &&
+        (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
         ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowLeft') ||
           (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp'))
       ) {
@@ -158,8 +160,8 @@ export default class Scrollbar extends React.Component<Props, State> {
 
         isKeyHandled = true;
       } else if (
-        allowCtrlArrowKeys &&
-        keyboardEvent.ctrlKey &&
+        allowCtrlOrMetaArrowKeys &&
+        (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
         ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
           (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown'))
       ) {
