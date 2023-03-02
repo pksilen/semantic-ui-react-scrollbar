@@ -2,7 +2,8 @@
 
 exports[`render should render horizontal scroll bar correctly 1`] = `
 <Scrollbar
-  allowCtrlArrowKeys={false}
+  allowArrowKeys={true}
+  allowCtrlOrMetaArrowKeys={false}
   allowHomeAndEndKeys={false}
   changeScrollPosition={[MockFunction]}
   maxScrollPosition={10}
@@ -116,7 +117,8 @@ exports[`render should render horizontal scroll bar correctly 1`] = `
 
 exports[`render should render vertical scroll bar correctly 1`] = `
 <Scrollbar
-  allowCtrlArrowKeys={false}
+  allowArrowKeys={true}
+  allowCtrlOrMetaArrowKeys={false}
   allowHomeAndEndKeys={false}
   changeScrollPosition={[MockFunction]}
   maxScrollPosition={10}

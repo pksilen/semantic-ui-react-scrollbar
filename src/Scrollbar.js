@@ -8,8 +8,9 @@ import { Icon } from 'semantic-ui-react';
 import styles from './styles';
 
 type Props = {
-  allowHomeAndEndKeys: ?boolean,
+  allowArrowKeys: ?boolean,
   allowCtrlOrMetaArrowKeys: ?boolean,
+  allowHomeAndEndKeys: ?boolean,
   changeScrollPosition: (number) => void,
   className: ?string,
   maxScrollPosition: number,
@@ -23,8 +24,9 @@ type State = {
 
 export default class Scrollbar extends React.Component<Props, State> {
   static propTypes: { [key: $Keys<Props>]: any } = {
-    allowHomeAndEndKeys: PropTypes.bool,
+    allowArrowKeys: PropTypes.bool,
     allowCtrlOrMetaArrowKeys: PropTypes.bool,
+    allowHomeAndEndKeys: PropTypes.bool,
     changeScrollPosition: PropTypes.func.isRequired,
     className: PropTypes.string,
     maxScrollPosition: PropTypes.number.isRequired,
@@ -33,8 +35,9 @@ export default class Scrollbar extends React.Component<Props, State> {
   };
 
   static defaultProps = {
+    allowArrowKeys: true,
+    allowCtrlOrMetaArrowKeys: false,
     allowHomeAndEndKeys: false,
-    allowCtrlArrowKeys: false,
     className: undefined,
     orientation: 'horizontal',
     pageSize: 1
@@ -96,8 +99,9 @@ export default class Scrollbar extends React.Component<Props, State> {
 
   onKeyDown = (keyboardEvent: KeyboardEvent) => {
     const {
-      allowHomeAndEndKeys,
+      allowArrowKeys,
       allowCtrlOrMetaArrowKeys,
+      allowHomeAndEndKeys,
       changeScrollPosition,
       maxScrollPosition,
       orientation,
@@ -109,6 +113,7 @@ export default class Scrollbar extends React.Component<Props, State> {
       if (
         !keyboardEvent.ctrlKey &&
         !keyboardEvent.metaKey &&
+        allowArrowKeys &&
         ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowLeft') ||
           (orientation === 'vertical' && keyboardEvent.code === 'ArrowUp'))
       ) {
@@ -117,6 +122,7 @@ export default class Scrollbar extends React.Component<Props, State> {
       } else if (
         !keyboardEvent.ctrlKey &&
         !keyboardEvent.metaKey &&
+        allowArrowKeys &&
         ((orientation === 'horizontal' && keyboardEvent.code === 'ArrowRight') ||
           (orientation === 'vertical' && keyboardEvent.code === 'ArrowDown'))
       ) {
